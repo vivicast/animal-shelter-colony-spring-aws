@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  database-mongodb-colony:
+    image: mongo
+    container_name: "mongodbcontainercolony"
+    ports:
+      - 27017:27017
+    restart: always
+  api-colony:
+    build: .
+    restart: always
+    container_name: "apicolonycontainer"
+    ports:
+      - 8081:8081
+    working_dir: /opt/app
+    depends_on:
+      - database-mongodb-colony
